@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class MultipleRegression(object):
+class MultipleRegressionReg(object):
     def __init__(self):
         self.a = np.zeros(1)
         self.intercept = True
@@ -11,9 +11,8 @@ class MultipleRegression(object):
 
     def MSE(self, x, Y):
         return \
-            (((Y.to_numpy() - self.predict(x).to_numpy()).T @ (Y.to_numpy() - self.predict(x).to_numpy())) / x.shape[
-                0])[0][
-                0]
+        (((Y.to_numpy() - self.predict(x).to_numpy()).T @ (Y.to_numpy() - self.predict(x).to_numpy())) / x.shape[0])[0][
+            0]
 
     def MAE(self, x, Y):
         return abs((Y.to_numpy() - self.predict(x).to_numpy())).mean()
@@ -42,6 +41,7 @@ class MultipleRegression(object):
                 dT_a += 2 * lam * ((self.a))
             elif reg == "ElasticNet":
                 dT_a += rho * lam * (np.sign(self.a)) + 2 * (1 - rho) * lam * ((self.a))
+
             self.a -= alpha * dT_a
             new_error = self.MSE(self.x, self.Y)
             step += 1

@@ -25,6 +25,7 @@ target = data.drop(['variable_1', 'variable_2', 'variable_3',
 
 for index, row in target.iterrows():
     if pd.isna(row['target']):
+        print(index)
         target.iat[index, 0] = 0
 # Выборка нужных столбцов для признаков и результирующего признака
 
